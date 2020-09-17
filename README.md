@@ -6,13 +6,19 @@ Bleeding edge GNU GCC toolchains built from sources with latest binutils and gli
 
 Clone using git 
 ```
-$ git clone https://github.com/theradcolor/arm-linux-gnueabi.git -b <branch-name> --depth=1
+$ git clone https://github.com/theradcolor/arm-linux-gnueabi.git --depth=1
 ```
 
-where branches
-- arm-linux-gnueabi-10.1.0
+> Note: This is continous updating repository made from the latest GNU's GCC sources rather than stable releases, so if you want to use the stable release of gcc clone the stable-gcc branch of this repository
 
-For ARM64, checkout https://github.com/theradcolor/aarch64-linux-gnu
+For stable gcc
+```
+$ git clone https://github.com/theradcolor/arm-linux-gnueabi.git -b stable-gcc --depth=1
+```
+
+For ARM64, checkout https://github.com/theradcolor/aarch64-linux-gnu.git
+
+For x86_64, checkout https://github.com/theradcolor/x86_64-linux-gnu.git
 
 ## Using the toolchain
 
