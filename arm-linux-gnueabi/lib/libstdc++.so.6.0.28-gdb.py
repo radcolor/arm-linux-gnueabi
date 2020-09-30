@@ -19,8 +19,8 @@ import gdb
 import os
 import os.path
 
-pythondir = '/home/theradcolor/whyred/compilers/gnugcc/build-tools-gcc/arm-linux-gnueabi/share/gcc-10.1.0/python'
-libdir = '/home/theradcolor/whyred/compilers/gnugcc/build-tools-gcc/arm-linux-gnueabi/arm-linux-gnueabi/lib'
+pythondir = '/drone/src/arm-linux-gnueabi/share/gcc-10.2.0/python'
+libdir = '/drone/src/arm-linux-gnueabi/arm-linux-gnueabi/lib'
 
 # This file might be loaded when there is no current objfile.  This
 # can happen if the user loads it manually.  In this case we don't
