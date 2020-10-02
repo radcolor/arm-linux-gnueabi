@@ -18,7 +18,6 @@ GNU Libraries
 * libgomp: (libgomp).           GNU Offloading and Multi Processing Runtime 
                                   Library.
 * libitm: (libitm).             GNU Transactional Memory Library
-* libquadmath: (libquadmath).   GCC Quad-Precision Math Library
 
 Individual utilities
 * addr2line: (binutils)addr2line.               Convert addresses to file and 
