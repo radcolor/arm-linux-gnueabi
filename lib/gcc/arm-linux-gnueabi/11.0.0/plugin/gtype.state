@@ -28086,7 +28086,7 @@
   nil 0 nil nil )
  
  (!type struct 2080 nil  gc_used "module_hasher"
-  (!srcfileloc  "fortran/trans-decl.c" 5149)
+  (!srcfileloc  "fortran/trans-decl.c" 5161)
   (!fields 0 )
   nil 32 nil nil )
  
@@ -28095,11 +28095,11 @@
    (!type already_seen 2081)
   )
   gc_pointed_to "hash_table<module_hasher>"
-  (!srcfileloc  "fortran/trans-decl.c" 5149)
+  (!srcfileloc  "fortran/trans-decl.c" 5161)
   (!fields 1 
    (!pair  "module_hasher"
     (!type already_seen 2080)
-    (!srcfileloc  "fortran/trans-decl.c" 5149)
+    (!srcfileloc  "fortran/trans-decl.c" 5161)
     nil )
   )
  )
@@ -28887,11 +28887,11 @@
   nil )
  (!pair  "module_hasher"
   (!type already_seen 2080)
-  (!srcfileloc  "fortran/trans-decl.c" 5149)
+  (!srcfileloc  "fortran/trans-decl.c" 5161)
   nil )
  (!pair  "hash_table<module_hasher>"
   (!type already_seen 2081)
-  (!srcfileloc  "fortran/trans-decl.c" 5149)
+  (!srcfileloc  "fortran/trans-decl.c" 5161)
   nil )
  (!pair  "tree_frame_info"
   (!type already_seen 662)
@@ -32972,27 +32972,27 @@
   nil )
  (!pair  "module_htab"
   (!type already_seen 2082)
-  (!srcfileloc  "fortran/trans-decl.c" 5149)
+  (!srcfileloc  "fortran/trans-decl.c" 5161)
   nil )
  (!pair  "saved_local_decls"
   (!type already_seen 23)
-  (!srcfileloc  "fortran/trans-decl.c" 68)
+  (!srcfileloc  "fortran/trans-decl.c" 69)
   nil )
  (!pair  "saved_parent_function_decls"
   (!type already_seen 23)
-  (!srcfileloc  "fortran/trans-decl.c" 64)
+  (!srcfileloc  "fortran/trans-decl.c" 65)
   nil )
  (!pair  "saved_function_decls"
   (!type already_seen 23)
-  (!srcfileloc  "fortran/trans-decl.c" 63)
+  (!srcfileloc  "fortran/trans-decl.c" 64)
   nil )
  (!pair  "parent_fake_result_decl"
   (!type already_seen 23)
-  (!srcfileloc  "fortran/trans-decl.c" 58)
+  (!srcfileloc  "fortran/trans-decl.c" 59)
   nil )
  (!pair  "current_fake_result_decl"
   (!type already_seen 23)
-  (!srcfileloc  "fortran/trans-decl.c" 57)
+  (!srcfileloc  "fortran/trans-decl.c" 58)
   nil )
  (!pair  "global_binding_level"
   (!type already_seen 435)
