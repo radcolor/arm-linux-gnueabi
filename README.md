@@ -1,8 +1,8 @@
-# GNU GCC Toolchain
+## GNU GCC Toolchain
 
 Bleeding edge GNU GCC toolchains built from sources with latest binutils and glibc.
 
-## Getting the toolchain
+### Getting the toolchain
 
 Clone using git 
 ```
@@ -18,9 +18,7 @@ $ git clone https://github.com/theradcolor/arm-linux-gnueabi.git -b stable-gcc -
 
 For ARM64, checkout https://github.com/theradcolor/aarch64-linux-gnu.git
 
-For x86_64, checkout https://github.com/theradcolor/x86_64-linux-gnu.git
-
-## Using the toolchain
+### Using the toolchain
 
 Export the `CROSS_COMPILE_ARM32` in enviroment
 
@@ -28,7 +26,7 @@ Export the `CROSS_COMPILE_ARM32` in enviroment
 $ export CROSS_COMPILE_ARM32=<toolchain-path>/bin/arm-linux-gnueabi-
 ```
 
-## License
+### License
 
 The GNU Compiler Collection is free software.  See the files whose
 names start with COPYING for copying permission.  The manuals, and
