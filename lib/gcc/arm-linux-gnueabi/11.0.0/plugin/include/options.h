@@ -7839,8 +7839,9 @@ struct GTY(()) cl_target_option
   signed char x_inline_asm_unified;
   signed char x_arm_restrict_it;
   signed char x_unaligned_access;
-  /* 8 members */
+  /* 7 members */
   unsigned HOST_WIDE_INT explicit_mask[1];
+  /* - */ int explicit_mask_target_flags;
 };
 
 
