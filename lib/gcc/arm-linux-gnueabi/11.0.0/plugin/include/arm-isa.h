@@ -196,16 +196,13 @@ enum isa_feature {
   isa_bit_be8
 
 #define ISA_VFPv2 \
-  isa_bit_vfpv2, \
-  isa_bit_vfp_base
+  isa_bit_vfpv2
 
 #define ISA_VFPv3 \
   isa_bit_vfpv2, \
-  isa_bit_vfpv3, \
-  isa_bit_vfp_base
+  isa_bit_vfpv3
 
 #define ISA_VFPv4 \
-  isa_bit_vfp_base, \
   isa_bit_fp16conv, \
   isa_bit_vfpv2, \
   isa_bit_vfpv3, \
@@ -348,7 +345,6 @@ enum isa_feature {
   isa_bit_be8
 
 #define ISA_ALL_FP \
-  isa_bit_vfp_base, \
   isa_bit_fp_dbl, \
   isa_bit_fp16conv, \
   isa_bit_fp16, \
@@ -414,7 +410,6 @@ enum isa_feature {
   isa_bit_thumb
 
 #define ISA_ALL_FPU_INTERNAL \
-  isa_bit_vfp_base, \
   isa_bit_fp16conv, \
   isa_bit_crypto, \
   isa_bit_vfpv2, \
@@ -427,7 +422,6 @@ enum isa_feature {
 
 #define ISA_FPv5 \
   isa_bit_fpv5, \
-  isa_bit_vfp_base, \
   isa_bit_fp16conv, \
   isa_bit_vfpv2, \
   isa_bit_vfpv3, \
@@ -488,7 +482,6 @@ enum isa_feature {
   isa_bit_vfpv2, \
   isa_bit_vfpv3, \
   isa_bit_vfpv4, \
-  isa_bit_vfp_base, \
   isa_bit_fp16conv, \
   isa_bit_fpv5
 
@@ -511,7 +504,6 @@ enum isa_feature {
   isa_bit_armv6k
 
 #define ISA_MVE \
-  isa_bit_vfp_base, \
   isa_bit_armv7em, \
   isa_bit_mve
 
@@ -581,7 +573,6 @@ enum isa_feature {
   isa_bit_vfpv2, \
   isa_bit_vfpv3, \
   isa_bit_vfpv4, \
-  isa_bit_vfp_base, \
   isa_bit_fp16conv, \
   isa_bit_mve_float
 
@@ -614,4 +605,35 @@ enum isa_feature {
   isa_bit_thumb, \
   isa_bit_mp, \
   isa_bit_armv5te
+
+struct fbit_implication {
+  /* Represents a feature implication, where:
+     ante IMPLIES cons
+     meaning that if ante is enabled then we should
+     also implicitly enable cons.  */
+  enum isa_feature ante;
+  enum isa_feature cons;
+};
+
+static const struct fbit_implication all_implied_fbits[] =
+{
+  { isa_bit_neon, isa_bit_vfp_base },
+  { isa_bit_vfpv4, isa_bit_vfp_base },
+  { isa_bit_fp_d32, isa_bit_vfp_base },
+  { isa_bit_fp_dbl, isa_bit_vfp_base },
+  { isa_bit_mve_float, isa_bit_vfp_base },
+  { isa_bit_mve, isa_bit_vfp_base },
+  { isa_bit_dotprod, isa_bit_vfp_base },
+  { isa_bit_crypto, isa_bit_vfp_base },
+  { isa_bit_fp16, isa_bit_vfp_base },
+  { isa_bit_armv7em, isa_bit_vfp_base },
+  { isa_bit_i8mm, isa_bit_vfp_base },
+  { isa_bit_fp16conv, isa_bit_vfp_base },
+  { isa_bit_fpv5, isa_bit_vfp_base },
+  { isa_bit_fp16fml, isa_bit_vfp_base },
+  { isa_bit_bf16, isa_bit_vfp_base },
+  { isa_bit_vfpv2, isa_bit_vfp_base },
+  { isa_bit_vfpv3, isa_bit_vfp_base },
+  { isa_nobit, isa_nobit }
+};
 
