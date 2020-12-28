@@ -7505,6 +7505,12 @@ extern int flag_lto_size_sort;
 #define flag_lto_size_sort global_options.x_flag_lto_size_sort
 #endif
 #ifdef GENERATOR_FILE
+extern int flag_stdlib_kind;
+#else
+  int x_flag_stdlib_kind;
+#define flag_stdlib_kind global_options.x_flag_stdlib_kind
+#endif
+#ifdef GENERATOR_FILE
 extern const char *flag_lto_dump_symbol;
 #else
   const char *x_flag_lto_dump_symbol;
@@ -10199,26 +10205,27 @@ enum opt_code
   /* OPT_std_iso9899_2017 = 1838, */         /* -std=iso9899:2017 */
   /* OPT_std_iso9899_2018 = 1839, */         /* -std=iso9899:2018 */
   OPT_std_legacy = 1840,                     /* -std=legacy */
-  OPT_symbol_ = 1841,                        /* -symbol= */
-  OPT_symbolic = 1842,                       /* -symbolic */
-  OPT_t = 1843,                              /* -t */
-  OPT_time = 1844,                           /* -time */
-  OPT_time_ = 1845,                          /* -time= */
-  OPT_tno_android_cc = 1846,                 /* -tno-android-cc */
-  OPT_tno_android_ld = 1847,                 /* -tno-android-ld */
-  OPT_traditional = 1848,                    /* -traditional */
-  OPT_traditional_cpp = 1849,                /* -traditional-cpp */
-  OPT_tree_stats = 1850,                     /* -tree-stats */
-  OPT_trigraphs = 1851,                      /* -trigraphs */
-  OPT_type_stats = 1852,                     /* -type-stats */
-  OPT_u = 1853,                              /* -u */
-  OPT_undef = 1854,                          /* -undef */
-  OPT_v = 1855,                              /* -v */
-  OPT_version = 1856,                        /* -version */
-  OPT_w = 1857,                              /* -w */
-  OPT_wrapper = 1858,                        /* -wrapper */
-  OPT_x = 1859,                              /* -x */
-  OPT_z = 1860,                              /* -z */
+  OPT_stdlib_ = 1841,                        /* -stdlib= */
+  OPT_symbol_ = 1842,                        /* -symbol= */
+  OPT_symbolic = 1843,                       /* -symbolic */
+  OPT_t = 1844,                              /* -t */
+  OPT_time = 1845,                           /* -time */
+  OPT_time_ = 1846,                          /* -time= */
+  OPT_tno_android_cc = 1847,                 /* -tno-android-cc */
+  OPT_tno_android_ld = 1848,                 /* -tno-android-ld */
+  OPT_traditional = 1849,                    /* -traditional */
+  OPT_traditional_cpp = 1850,                /* -traditional-cpp */
+  OPT_tree_stats = 1851,                     /* -tree-stats */
+  OPT_trigraphs = 1852,                      /* -trigraphs */
+  OPT_type_stats = 1853,                     /* -type-stats */
+  OPT_u = 1854,                              /* -u */
+  OPT_undef = 1855,                          /* -undef */
+  OPT_v = 1856,                              /* -v */
+  OPT_version = 1857,                        /* -version */
+  OPT_w = 1858,                              /* -w */
+  OPT_wrapper = 1859,                        /* -wrapper */
+  OPT_x = 1860,                              /* -x */
+  OPT_z = 1861,                              /* -z */
   N_OPTS,
   OPT_SPECIAL_unknown,
   OPT_SPECIAL_ignore,
