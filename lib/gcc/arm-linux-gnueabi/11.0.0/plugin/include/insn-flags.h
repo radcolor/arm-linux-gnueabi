@@ -224,18 +224,18 @@
 #define HAVE_arm_mcrr2 (arm_coproc_builtin_available (VUNSPEC_MCRR2))
 #define HAVE_arm_mrrc (arm_coproc_builtin_available (VUNSPEC_MRRC))
 #define HAVE_arm_mrrc2 (arm_coproc_builtin_available (VUNSPEC_MRRC2))
-#define HAVE_mve_vshlq_sv8qi (ARM_HAVE_V8QI_ARITH)
-#define HAVE_mve_vshlq_uv8qi (ARM_HAVE_V8QI_ARITH)
-#define HAVE_mve_vshlq_sv16qi (ARM_HAVE_V16QI_ARITH)
-#define HAVE_mve_vshlq_uv16qi (ARM_HAVE_V16QI_ARITH)
-#define HAVE_mve_vshlq_sv4hi (ARM_HAVE_V4HI_ARITH)
-#define HAVE_mve_vshlq_uv4hi (ARM_HAVE_V4HI_ARITH)
-#define HAVE_mve_vshlq_sv8hi (ARM_HAVE_V8HI_ARITH)
-#define HAVE_mve_vshlq_uv8hi (ARM_HAVE_V8HI_ARITH)
-#define HAVE_mve_vshlq_sv2si (ARM_HAVE_V2SI_ARITH)
-#define HAVE_mve_vshlq_uv2si (ARM_HAVE_V2SI_ARITH)
-#define HAVE_mve_vshlq_sv4si (ARM_HAVE_V4SI_ARITH)
-#define HAVE_mve_vshlq_uv4si (ARM_HAVE_V4SI_ARITH)
+#define HAVE_mve_vshlq_sv8qi (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_uv8qi (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_sv16qi (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_uv16qi (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_sv4hi (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_uv4hi (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_sv8hi (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_uv8hi (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_sv2si (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_uv2si (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_sv4si (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_mve_vshlq_uv4si (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_tbcstv8qi (TARGET_REALLY_IWMMXT)
 #define HAVE_tbcstv4hi (TARGET_REALLY_IWMMXT)
 #define HAVE_tbcstv2si (TARGET_REALLY_IWMMXT)
@@ -2761,11 +2761,8 @@
 #define HAVE_mve_vmulqv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vmulqv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vmulqv4si (TARGET_HAVE_MVE)
-#define HAVE_mve_vornq_uv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vornq_sv16qi (TARGET_HAVE_MVE)
-#define HAVE_mve_vornq_uv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vornq_sv8hi (TARGET_HAVE_MVE)
-#define HAVE_mve_vornq_uv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vornq_sv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_sv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_sv8hi (TARGET_HAVE_MVE)
@@ -4785,24 +4782,24 @@
 #define HAVE_movmisalignv4sf (ARM_HAVE_V4SF_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
 #define HAVE_movmisaligndi (ARM_HAVE_DI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
 #define HAVE_movmisalignv2di (ARM_HAVE_V2DI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_vashlv8qi3 (ARM_HAVE_V8QI_ARITH)
-#define HAVE_vashlv16qi3 (ARM_HAVE_V16QI_ARITH)
-#define HAVE_vashlv4hi3 (ARM_HAVE_V4HI_ARITH)
-#define HAVE_vashlv8hi3 (ARM_HAVE_V8HI_ARITH)
-#define HAVE_vashlv2si3 (ARM_HAVE_V2SI_ARITH)
-#define HAVE_vashlv4si3 (ARM_HAVE_V4SI_ARITH)
-#define HAVE_vashrv8qi3 (ARM_HAVE_V8QI_ARITH)
-#define HAVE_vashrv16qi3 (ARM_HAVE_V16QI_ARITH)
-#define HAVE_vashrv4hi3 (ARM_HAVE_V4HI_ARITH)
-#define HAVE_vashrv8hi3 (ARM_HAVE_V8HI_ARITH)
-#define HAVE_vashrv2si3 (ARM_HAVE_V2SI_ARITH)
-#define HAVE_vashrv4si3 (ARM_HAVE_V4SI_ARITH)
-#define HAVE_vlshrv8qi3 (ARM_HAVE_V8QI_ARITH)
-#define HAVE_vlshrv16qi3 (ARM_HAVE_V16QI_ARITH)
-#define HAVE_vlshrv4hi3 (ARM_HAVE_V4HI_ARITH)
-#define HAVE_vlshrv8hi3 (ARM_HAVE_V8HI_ARITH)
-#define HAVE_vlshrv2si3 (ARM_HAVE_V2SI_ARITH)
-#define HAVE_vlshrv4si3 (ARM_HAVE_V4SI_ARITH)
+#define HAVE_vashlv8qi3 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashlv16qi3 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashlv4hi3 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashlv8hi3 (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashlv2si3 (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashlv4si3 (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashrv8qi3 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashrv16qi3 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashrv4hi3 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashrv8hi3 (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashrv2si3 (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vashrv4si3 (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vlshrv8qi3 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vlshrv16qi3 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vlshrv4hi3 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vlshrv8hi3 (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vlshrv2si3 (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_vlshrv4si3 (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_iwmmxt_setwcgr0 (TARGET_REALLY_IWMMXT)
 #define HAVE_iwmmxt_setwcgr1 (TARGET_REALLY_IWMMXT)
 #define HAVE_iwmmxt_setwcgr2 (TARGET_REALLY_IWMMXT)
@@ -5544,6 +5541,9 @@
 #define HAVE_mve_veorq_sv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_veorq_sv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_veorq_sv4si (TARGET_HAVE_MVE)
+#define HAVE_mve_vornq_uv16qi (TARGET_HAVE_MVE)
+#define HAVE_mve_vornq_uv8hi (TARGET_HAVE_MVE)
+#define HAVE_mve_vornq_uv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_uv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_uv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_uv4si (TARGET_HAVE_MVE)
@@ -8355,11 +8355,8 @@ extern rtx        gen_mve_vmulq_sv4si                                (rtx, rtx, 
 extern rtx        gen_mve_vmulqv16qi                                 (rtx, rtx, rtx);
 extern rtx        gen_mve_vmulqv8hi                                  (rtx, rtx, rtx);
 extern rtx        gen_mve_vmulqv4si                                  (rtx, rtx, rtx);
-extern rtx        gen_mve_vornq_uv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_vornq_sv16qi                               (rtx, rtx, rtx);
-extern rtx        gen_mve_vornq_uv8hi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vornq_sv8hi                                (rtx, rtx, rtx);
-extern rtx        gen_mve_vornq_uv4si                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vornq_sv4si                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_sv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_sv8hi                                (rtx, rtx, rtx);
@@ -11039,6 +11036,9 @@ extern rtx        gen_cadd270v4si3                                   (rtx, rtx, 
 extern rtx        gen_mve_veorq_sv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_veorq_sv8hi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_veorq_sv4si                                (rtx, rtx, rtx);
+extern rtx        gen_mve_vornq_uv16qi                               (rtx, rtx, rtx);
+extern rtx        gen_mve_vornq_uv8hi                                (rtx, rtx, rtx);
+extern rtx        gen_mve_vornq_uv4si                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_uv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_uv8hi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_uv4si                                (rtx, rtx, rtx);
