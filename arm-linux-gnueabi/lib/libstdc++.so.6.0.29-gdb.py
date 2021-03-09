@@ -19,7 +19,7 @@ import gdb
 import os
 import os.path
 
-pythondir = '/drone/src/builder/arm-linux-gnueabi/share/gcc-11.0.0/python'
+pythondir = '/drone/src/builder/arm-linux-gnueabi/share/gcc-11.0.1/python'
 libdir = '/drone/src/builder/arm-linux-gnueabi/arm-linux-gnueabi/lib'
 
 # This file might be loaded when there is no current objfile.  This
