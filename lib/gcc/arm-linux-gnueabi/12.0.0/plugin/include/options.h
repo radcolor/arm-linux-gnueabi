@@ -8343,46 +8343,106 @@ void init_global_opts_from_cpp(struct gcc_options * opts,
 #define MASK_TPCS_LEAF_FRAME (1U << 17)
 #define MASK_NEON_VECTORIZE_DOUBLE (1U << 18)
 
+/* ABORT_NORETURN mask */
 #define TARGET_ABORT_NORETURN ((target_flags & MASK_ABORT_NORETURN) != 0)
 #define TARGET_ABORT_NORETURN_P(target_flags) (((target_flags) & MASK_ABORT_NORETURN) != 0)
+#define TARGET_EXPLICIT_ABORT_NORETURN_P(opts) ((opts->x_target_flags_explicit & MASK_ABORT_NORETURN) != 0)
+#define SET_TARGET_ABORT_NORETURN(opts) opts->x_target_flags |= MASK_ABORT_NORETURN
+/* ANDROID mask */
 #define TARGET_ANDROID ((flag_android & OPTION_MASK_ANDROID) != 0)
 #define TARGET_ANDROID_P(flag_android) (((flag_android) & OPTION_MASK_ANDROID) != 0)
+#define TARGET_EXPLICIT_ANDROID_P(opts) ((opts->x_flag_android_explicit & OPTION_MASK_ANDROID) != 0)
+#define SET_TARGET_ANDROID(opts) opts->x_flag_android |= OPTION_MASK_ANDROID
+/* APCS_FRAME mask */
 #define TARGET_APCS_FRAME ((target_flags & MASK_APCS_FRAME) != 0)
 #define TARGET_APCS_FRAME_P(target_flags) (((target_flags) & MASK_APCS_FRAME) != 0)
+#define TARGET_EXPLICIT_APCS_FRAME_P(opts) ((opts->x_target_flags_explicit & MASK_APCS_FRAME) != 0)
+#define SET_TARGET_APCS_FRAME(opts) opts->x_target_flags |= MASK_APCS_FRAME
+/* APCS_REENT mask */
 #define TARGET_APCS_REENT ((target_flags & MASK_APCS_REENT) != 0)
 #define TARGET_APCS_REENT_P(target_flags) (((target_flags) & MASK_APCS_REENT) != 0)
+#define TARGET_EXPLICIT_APCS_REENT_P(opts) ((opts->x_target_flags_explicit & MASK_APCS_REENT) != 0)
+#define SET_TARGET_APCS_REENT(opts) opts->x_target_flags |= MASK_APCS_REENT
+/* APCS_STACK mask */
 #define TARGET_APCS_STACK ((target_flags & MASK_APCS_STACK) != 0)
 #define TARGET_APCS_STACK_P(target_flags) (((target_flags) & MASK_APCS_STACK) != 0)
+#define TARGET_EXPLICIT_APCS_STACK_P(opts) ((opts->x_target_flags_explicit & MASK_APCS_STACK) != 0)
+#define SET_TARGET_APCS_STACK(opts) opts->x_target_flags |= MASK_APCS_STACK
+/* THUMB mask */
 #define TARGET_THUMB ((target_flags & MASK_THUMB) != 0)
 #define TARGET_THUMB_P(target_flags) (((target_flags) & MASK_THUMB) != 0)
+#define TARGET_EXPLICIT_THUMB_P(opts) ((opts->x_target_flags_explicit & MASK_THUMB) != 0)
+#define SET_TARGET_THUMB(opts) opts->x_target_flags |= MASK_THUMB
+/* BE8 mask */
 #define TARGET_BE8 ((target_flags & MASK_BE8) != 0)
 #define TARGET_BE8_P(target_flags) (((target_flags) & MASK_BE8) != 0)
+#define TARGET_EXPLICIT_BE8_P(opts) ((opts->x_target_flags_explicit & MASK_BE8) != 0)
+#define SET_TARGET_BE8(opts) opts->x_target_flags |= MASK_BE8
+/* BIG_END mask */
 #define TARGET_BIG_END ((target_flags & MASK_BIG_END) != 0)
 #define TARGET_BIG_END_P(target_flags) (((target_flags) & MASK_BIG_END) != 0)
+#define TARGET_EXPLICIT_BIG_END_P(opts) ((opts->x_target_flags_explicit & MASK_BIG_END) != 0)
+#define SET_TARGET_BIG_END(opts) opts->x_target_flags |= MASK_BIG_END
+/* CALLEE_INTERWORKING mask */
 #define TARGET_CALLEE_INTERWORKING ((target_flags & MASK_CALLEE_INTERWORKING) != 0)
 #define TARGET_CALLEE_INTERWORKING_P(target_flags) (((target_flags) & MASK_CALLEE_INTERWORKING) != 0)
+#define TARGET_EXPLICIT_CALLEE_INTERWORKING_P(opts) ((opts->x_target_flags_explicit & MASK_CALLEE_INTERWORKING) != 0)
+#define SET_TARGET_CALLEE_INTERWORKING(opts) opts->x_target_flags |= MASK_CALLEE_INTERWORKING
+/* CALLER_INTERWORKING mask */
 #define TARGET_CALLER_INTERWORKING ((target_flags & MASK_CALLER_INTERWORKING) != 0)
 #define TARGET_CALLER_INTERWORKING_P(target_flags) (((target_flags) & MASK_CALLER_INTERWORKING) != 0)
+#define TARGET_EXPLICIT_CALLER_INTERWORKING_P(opts) ((opts->x_target_flags_explicit & MASK_CALLER_INTERWORKING) != 0)
+#define SET_TARGET_CALLER_INTERWORKING(opts) opts->x_target_flags |= MASK_CALLER_INTERWORKING
+/* FDPIC mask */
 #define TARGET_FDPIC ((target_flags & MASK_FDPIC) != 0)
 #define TARGET_FDPIC_P(target_flags) (((target_flags) & MASK_FDPIC) != 0)
+#define TARGET_EXPLICIT_FDPIC_P(opts) ((opts->x_target_flags_explicit & MASK_FDPIC) != 0)
+#define SET_TARGET_FDPIC(opts) opts->x_target_flags |= MASK_FDPIC
+/* GENERAL_REGS_ONLY mask */
 #define TARGET_GENERAL_REGS_ONLY ((target_flags & MASK_GENERAL_REGS_ONLY) != 0)
 #define TARGET_GENERAL_REGS_ONLY_P(target_flags) (((target_flags) & MASK_GENERAL_REGS_ONLY) != 0)
+#define TARGET_EXPLICIT_GENERAL_REGS_ONLY_P(opts) ((opts->x_target_flags_explicit & MASK_GENERAL_REGS_ONLY) != 0)
+#define SET_TARGET_GENERAL_REGS_ONLY(opts) opts->x_target_flags |= MASK_GENERAL_REGS_ONLY
+/* LONG_CALLS mask */
 #define TARGET_LONG_CALLS ((target_flags & MASK_LONG_CALLS) != 0)
 #define TARGET_LONG_CALLS_P(target_flags) (((target_flags) & MASK_LONG_CALLS) != 0)
+#define TARGET_EXPLICIT_LONG_CALLS_P(opts) ((opts->x_target_flags_explicit & MASK_LONG_CALLS) != 0)
+#define SET_TARGET_LONG_CALLS(opts) opts->x_target_flags |= MASK_LONG_CALLS
+/* POKE_FUNCTION_NAME mask */
 #define TARGET_POKE_FUNCTION_NAME ((target_flags & MASK_POKE_FUNCTION_NAME) != 0)
 #define TARGET_POKE_FUNCTION_NAME_P(target_flags) (((target_flags) & MASK_POKE_FUNCTION_NAME) != 0)
+#define TARGET_EXPLICIT_POKE_FUNCTION_NAME_P(opts) ((opts->x_target_flags_explicit & MASK_POKE_FUNCTION_NAME) != 0)
+#define SET_TARGET_POKE_FUNCTION_NAME(opts) opts->x_target_flags |= MASK_POKE_FUNCTION_NAME
+/* SCHED_PROLOG mask */
 #define TARGET_SCHED_PROLOG ((target_flags & MASK_SCHED_PROLOG) != 0)
 #define TARGET_SCHED_PROLOG_P(target_flags) (((target_flags) & MASK_SCHED_PROLOG) != 0)
+#define TARGET_EXPLICIT_SCHED_PROLOG_P(opts) ((opts->x_target_flags_explicit & MASK_SCHED_PROLOG) != 0)
+#define SET_TARGET_SCHED_PROLOG(opts) opts->x_target_flags |= MASK_SCHED_PROLOG
+/* SINGLE_PIC_BASE mask */
 #define TARGET_SINGLE_PIC_BASE ((target_flags & MASK_SINGLE_PIC_BASE) != 0)
 #define TARGET_SINGLE_PIC_BASE_P(target_flags) (((target_flags) & MASK_SINGLE_PIC_BASE) != 0)
+#define TARGET_EXPLICIT_SINGLE_PIC_BASE_P(opts) ((opts->x_target_flags_explicit & MASK_SINGLE_PIC_BASE) != 0)
+#define SET_TARGET_SINGLE_PIC_BASE(opts) opts->x_target_flags |= MASK_SINGLE_PIC_BASE
+/* INTERWORK mask */
 #define TARGET_INTERWORK ((target_flags & MASK_INTERWORK) != 0)
 #define TARGET_INTERWORK_P(target_flags) (((target_flags) & MASK_INTERWORK) != 0)
+#define TARGET_EXPLICIT_INTERWORK_P(opts) ((opts->x_target_flags_explicit & MASK_INTERWORK) != 0)
+#define SET_TARGET_INTERWORK(opts) opts->x_target_flags |= MASK_INTERWORK
+/* TPCS_FRAME mask */
 #define TARGET_TPCS_FRAME ((target_flags & MASK_TPCS_FRAME) != 0)
 #define TARGET_TPCS_FRAME_P(target_flags) (((target_flags) & MASK_TPCS_FRAME) != 0)
+#define TARGET_EXPLICIT_TPCS_FRAME_P(opts) ((opts->x_target_flags_explicit & MASK_TPCS_FRAME) != 0)
+#define SET_TARGET_TPCS_FRAME(opts) opts->x_target_flags |= MASK_TPCS_FRAME
+/* TPCS_LEAF_FRAME mask */
 #define TARGET_TPCS_LEAF_FRAME ((target_flags & MASK_TPCS_LEAF_FRAME) != 0)
 #define TARGET_TPCS_LEAF_FRAME_P(target_flags) (((target_flags) & MASK_TPCS_LEAF_FRAME) != 0)
+#define TARGET_EXPLICIT_TPCS_LEAF_FRAME_P(opts) ((opts->x_target_flags_explicit & MASK_TPCS_LEAF_FRAME) != 0)
+#define SET_TARGET_TPCS_LEAF_FRAME(opts) opts->x_target_flags |= MASK_TPCS_LEAF_FRAME
+/* NEON_VECTORIZE_DOUBLE mask */
 #define TARGET_NEON_VECTORIZE_DOUBLE ((target_flags & MASK_NEON_VECTORIZE_DOUBLE) != 0)
 #define TARGET_NEON_VECTORIZE_DOUBLE_P(target_flags) (((target_flags) & MASK_NEON_VECTORIZE_DOUBLE) != 0)
+#define TARGET_EXPLICIT_NEON_VECTORIZE_DOUBLE_P(opts) ((opts->x_target_flags_explicit & MASK_NEON_VECTORIZE_DOUBLE) != 0)
+#define SET_TARGET_NEON_VECTORIZE_DOUBLE(opts) opts->x_target_flags |= MASK_NEON_VECTORIZE_DOUBLE
 
 
 #define CL_Ada        (1U << 0)
