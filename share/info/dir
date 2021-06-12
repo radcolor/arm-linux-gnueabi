@@ -51,6 +51,7 @@ Individual utilities
 
 Software development
 * As: (as).                     The GNU assembler.
+* Bfd: (bfd).                   The Binary File Descriptor library.
 * Binutils: (binutils).         The GNU binary utilities.
 * Cpp: (cpp).                   The GNU C preprocessor.
 * Cpplib: (cppinternals).       Cpplib internals.
