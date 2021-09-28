@@ -1,4 +1,4 @@
-This is libc.info, produced by makeinfo version 6.8 from libc.texinfo.
+This is libc.info, produced by makeinfo version 6.7 from libc.texinfo.
 
 This is ‘The GNU C Library Reference Manual’, for version 2.34.9000.
 
@@ -801,6 +801,7 @@ START-INFO-DIR-ENTRY
 * dcgettext: (libc)Translation with gettext.
 * dcngettext: (libc)Advanced gettext functions.
 * ddivl: (libc)Misc FP Arithmetic.
+* dfmal: (libc)Misc FP Arithmetic.
 * dgettext: (libc)Translation with gettext.
 * difftime: (libc)Calculating Elapsed Time.
 * dirfd: (libc)Opening a Directory.
@@ -813,6 +814,7 @@ START-INFO-DIR-ENTRY
 * drem: (libc)Remainder Functions.
 * dremf: (libc)Remainder Functions.
 * dreml: (libc)Remainder Functions.
+* dsqrtl: (libc)Misc FP Arithmetic.
 * dsubl: (libc)Misc FP Arithmetic.
 * dup2: (libc)Duplicating Descriptors.
 * dup: (libc)Duplicating Descriptors.
@@ -884,16 +886,24 @@ START-INFO-DIR-ENTRY
 * fMaddfNx: (libc)Misc FP Arithmetic.
 * fMdivfN: (libc)Misc FP Arithmetic.
 * fMdivfNx: (libc)Misc FP Arithmetic.
+* fMfmafN: (libc)Misc FP Arithmetic.
+* fMfmafNx: (libc)Misc FP Arithmetic.
 * fMmulfN: (libc)Misc FP Arithmetic.
 * fMmulfNx: (libc)Misc FP Arithmetic.
+* fMsqrtfN: (libc)Misc FP Arithmetic.
+* fMsqrtfNx: (libc)Misc FP Arithmetic.
 * fMsubfN: (libc)Misc FP Arithmetic.
 * fMsubfNx: (libc)Misc FP Arithmetic.
 * fMxaddfN: (libc)Misc FP Arithmetic.
 * fMxaddfNx: (libc)Misc FP Arithmetic.
 * fMxdivfN: (libc)Misc FP Arithmetic.
 * fMxdivfNx: (libc)Misc FP Arithmetic.
+* fMxfmafN: (libc)Misc FP Arithmetic.
+* fMxfmafNx: (libc)Misc FP Arithmetic.
 * fMxmulfN: (libc)Misc FP Arithmetic.
 * fMxmulfNx: (libc)Misc FP Arithmetic.
+* fMxsqrtfN: (libc)Misc FP Arithmetic.
+* fMxsqrtfNx: (libc)Misc FP Arithmetic.
 * fMxsubfN: (libc)Misc FP Arithmetic.
 * fMxsubfNx: (libc)Misc FP Arithmetic.
 * fabs: (libc)Absolute Value.
@@ -946,6 +956,8 @@ START-INFO-DIR-ENTRY
 * fexecve: (libc)Executing a File.
 * fflush: (libc)Flushing Buffers.
 * fflush_unlocked: (libc)Flushing Buffers.
+* ffma: (libc)Misc FP Arithmetic.
+* ffmal: (libc)Misc FP Arithmetic.
 * fgetc: (libc)Character Input.
 * fgetc_unlocked: (libc)Character Input.
 * fgetgrent: (libc)Scanning All Groups.
@@ -1048,6 +1060,8 @@ START-INFO-DIR-ENTRY
 * fseeko: (libc)File Positioning.
 * fsetpos64: (libc)Portable Positioning.
 * fsetpos: (libc)Portable Positioning.
+* fsqrt: (libc)Misc FP Arithmetic.
+* fsqrtl: (libc)Misc FP Arithmetic.
 * fstat64: (libc)Reading Attributes.
 * fstat: (libc)Reading Attributes.
 * fsub: (libc)Misc FP Arithmetic.
@@ -2103,6 +2117,99 @@ START-INFO-DIR-ENTRY
 * ynl: (libc)Special Functions.
 END-INFO-DIR-ENTRY
 
+
+File: libc.info,  Node: Networks Database,  Prev: Socket Options,  Up: Sockets
+
+16.13 Networks Database
+=======================
+
+Many systems come with a database that records a list of networks known
+to the system developer.  This is usually kept either in the file
+‘/etc/networks’ or in an equivalent from a name server.  This data base
+is useful for routing programs such as ‘route’, but it is not useful for
+programs that simply communicate over the network.  We provide functions
+to access this database, which are declared in ‘netdb.h’.
+
+ -- Data Type: struct netent
+
+     This data type is used to represent information about entries in
+     the networks database.  It has the following members:
+
+     ‘char *n_name’
+          This is the “official” name of the network.
+
+     ‘char **n_aliases’
+          These are alternative names for the network, represented as a
+          vector of strings.  A null pointer terminates the array.
+
+     ‘int n_addrtype’
+          This is the type of the network number; this is always equal
+          to ‘AF_INET’ for Internet networks.
+
+     ‘unsigned long int n_net’
+          This is the network number.  Network numbers are returned in
+          host byte order; see *note Byte Order::.
+
+   Use the ‘getnetbyname’ or ‘getnetbyaddr’ functions to search the
+networks database for information about a specific network.  The
+information is returned in a statically-allocated structure; you must
+copy the information if you need to save it.
+
+ -- Function: struct netent * getnetbyname (const char *NAME)
+
+     Preliminary: | MT-Unsafe race:netbyname env locale | AS-Unsafe
+     dlopen plugin heap lock | AC-Unsafe corrupt lock fd mem | *Note
+     POSIX Safety Concepts::.
+
+     The ‘getnetbyname’ function returns information about the network
+     named NAME.  It returns a null pointer if there is no such network.
+
+ -- Function: struct netent * getnetbyaddr (uint32_t NET, int TYPE)
+
+     Preliminary: | MT-Unsafe race:netbyaddr locale | AS-Unsafe dlopen
+     plugin heap lock | AC-Unsafe corrupt lock fd mem | *Note POSIX
+     Safety Concepts::.
+
+     The ‘getnetbyaddr’ function returns information about the network
+     of type TYPE with number NET.  You should specify a value of
+     ‘AF_INET’ for the TYPE argument for Internet networks.
+
+     ‘getnetbyaddr’ returns a null pointer if there is no such network.
+
+   You can also scan the networks database using ‘setnetent’,
+‘getnetent’ and ‘endnetent’.  Be careful when using these functions
+because they are not reentrant.
+
+ -- Function: void setnetent (int STAYOPEN)
+
+     Preliminary: | MT-Unsafe race:netent env locale | AS-Unsafe dlopen
+     plugin heap lock | AC-Unsafe corrupt lock fd mem | *Note POSIX
+     Safety Concepts::.
+
+     This function opens and rewinds the networks database.
+
+     If the STAYOPEN argument is nonzero, this sets a flag so that
+     subsequent calls to ‘getnetbyname’ or ‘getnetbyaddr’ will not close
+     the database (as they usually would).  This makes for more
+     efficiency if you call those functions several times, by avoiding
+     reopening the database for each call.
+
+ -- Function: struct netent * getnetent (void)
+
+     Preliminary: | MT-Unsafe race:netent race:netentbuf env locale |
+     AS-Unsafe dlopen plugin heap lock | AC-Unsafe corrupt lock fd mem |
+     *Note POSIX Safety Concepts::.
+
+     This function returns the next entry in the networks database.  It
+     returns a null pointer if there are no more entries.
+
+ -- Function: void endnetent (void)
+
+     Preliminary: | MT-Unsafe race:netent env locale | AS-Unsafe dlopen
+     plugin heap lock | AC-Unsafe corrupt lock fd mem | *Note POSIX
+     Safety Concepts::.
+
+     This function closes the networks database.
 
 
 File: libc.info,  Node: Low-Level Terminal Interface,  Next: Syslog,  Prev: Sockets,  Up: Top
@@ -5943,6 +6050,10 @@ fmaf          -               -               -               -               -
 fma           -               -               -               -               -
 fmal          -               -               -               -               -
 fmaf128       -               -               -               -               -
+fma_ldoublef  -               -               -               -               -
+fma_ldouble   -               -               -               -               -
+fma_ldoublel  -               -               -               -               -
+fma_ldoublef128-              -               -               -               -
 fmodf         -               -               -               -               -
 fmod          -               -               -               -               -
 fmodl         -               -               -               -               -
@@ -6015,6 +6126,10 @@ sqrtf         -               -               -               -               -
 sqrt          -               -               -               -               -
 sqrtl         -               -               -               -               -
 sqrtf128      -               -               -               -               -
+sqrt_ldoublef -               -               -               -               -
+sqrt_ldouble  -               -               -               -               -
+sqrt_ldoublel -               -               -               -               -
+sqrt_ldoublef128-             -               -               -               -
 sub_ldoublef  -               -               -               -               -
 sub_ldouble   -               -               -               -               -
 sub_ldoublel  -               -               -               -               -
@@ -6197,6 +6312,10 @@ fmaf          -               -               -               -               -
 fma           -               -               -               -               -
 fmal          -               -               -               -               -
 fmaf128       -               -               -               -               -
+fma_ldoublef  -               -               -               -               -
+fma_ldouble   -               -               -               -               -
+fma_ldoublel  -               -               -               -               -
+fma_ldoublef128-              -               -               -               -
 fmodf         -               -               -               -               -
 fmod          -               -               -               -               -
 fmodl         -               -               -               -               -
@@ -6269,6 +6388,10 @@ sqrtf         -               -               -               -               -
 sqrt          -               -               -               -               -
 sqrtl         -               -               -               -               -
 sqrtf128      -               -               -               -               -
+sqrt_ldoublef -               -               -               -               -
+sqrt_ldouble  -               -               -               -               -
+sqrt_ldoublel -               -               -               -               -
+sqrt_ldoublef128-             -               -               -               -
 sub_ldoublef  -               -               -               -               -
 sub_ldouble   -               -               -               -               -
 sub_ldoublel  -               -               -               -               -
@@ -6450,6 +6573,10 @@ fmaf          -               -               -               -               -
 fma           -               -               -               -               -
 fmal          -               -               -               -               -
 fmaf128       -               -               -               -               -
+fma_ldoublef  -               -               -               -               -
+fma_ldouble   -               -               -               -               -
+fma_ldoublel  -               -               -               -               -
+fma_ldoublef128-              -               -               -               -
 fmodf         -               -               -               -               -
 fmod          -               -               -               -               -
 fmodl         -               -               -               -               -
@@ -6522,6 +6649,10 @@ sqrtf         -               -               -               -               -
 sqrt          -               -               -               -               -
 sqrtl         -               -               -               -               -
 sqrtf128      -               -               -               -               -
+sqrt_ldoublef -               -               -               -               -
+sqrt_ldouble  -               -               -               -               -
+sqrt_ldoublel -               -               -               -               -
+sqrt_ldoublef128-             -               -               -               -
 sub_ldoublef  -               -               -               -               -
 sub_ldouble   -               -               -               -               -
 sub_ldoublel  -               -               -               -               -
@@ -6704,6 +6835,10 @@ fmaf          -               -               -               -               -
 fma           -               -               -               -               -
 fmal          -               1               1               -               -
 fmaf128       -               -               -               -               -
+fma_ldoublef  -               1               -               -               -
+fma_ldouble   -               1               -               -               -
+fma_ldoublel  -               -               -               -               -
+fma_ldoublef128-              -               -               -               -
 fmodf         -               -               -               -               -
 fmod          -               -               -               -               -
 fmodl         -               1               1               -               -
@@ -6776,6 +6911,10 @@ sqrtf         -               -               -               -               -
 sqrt          -               -               -               -               -
 sqrtl         -               1               1               -               -
 sqrtf128      -               -               -               -               -
+sqrt_ldoublef -               -               -               -               -
+sqrt_ldouble  -               1               -               -               -
+sqrt_ldoublel -               -               -               -               -
+sqrt_ldoublef128-             -               -               -               -
 sub_ldoublef  -               1               1               -               -
 sub_ldouble   -               1               1               -               -
 sub_ldoublel  -               -               -               -               -
@@ -6957,6 +7096,10 @@ fmaf          -               -               -               -               -
 fma           -               -               -               -               -
 fmal          -               -               -               -               -
 fmaf128       -               -               -               -               -
+fma_ldoublef  -               -               -               -               -
+fma_ldouble   -               -               -               -               -
+fma_ldoublel  -               -               -               -               -
+fma_ldoublef128-              -               -               -               -
 fmodf         -               -               -               -               -
 fmod          -               -               -               -               -
 fmodl         -               -               -               -               -
@@ -7029,6 +7172,10 @@ sqrtf         -               -               -               -               -
 sqrt          -               -               -               -               -
 sqrtl         -               -               -               -               -
 sqrtf128      -               -               -               -               -
+sqrt_ldoublef -               -               -               -               -
+sqrt_ldouble  -               -               -               -               -
+sqrt_ldoublel -               -               -               -               -
+sqrt_ldoublef128-             -               -               -               -
 sub_ldoublef  -               -               -               -               -
 sub_ldouble   -               -               -               -               -
 sub_ldoublel  -               -               -               -               -
@@ -7210,6 +7357,10 @@ fmaf          -
 fma           -
 fmal          -
 fmaf128       -
+fma_ldoublef  -
+fma_ldouble   -
+fma_ldoublel  -
+fma_ldoublef128-
 fmodf         -
 fmod          -
 fmodl         -
@@ -7282,6 +7433,10 @@ sqrtf         -
 sqrt          -
 sqrtl         -
 sqrtf128      -
+sqrt_ldoublef -
+sqrt_ldouble  -
+sqrt_ldoublel -
+sqrt_ldoublef128-
 sub_ldoublef  -
 sub_ldouble   -
 sub_ldoublel  -

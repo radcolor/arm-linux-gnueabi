@@ -24,9 +24,9 @@
 
 # We should be able to find the translation right at the beginning.
 TEXTDOMAIN=libc
-TEXTDOMAINDIR=/drone/src/builder/arm-linux-gnueabi/arm-linux-gnueabi/share/locale
+TEXTDOMAINDIR=/home/runner/work/build-tools-gcc/build-tools-gcc/arm-linux-gnueabi/arm-linux-gnueabi/share/locale
 
-RTLDLIST=/drone/src/builder/arm-linux-gnueabi/arm-linux-gnueabi/lib/ld-linux.so.3
+RTLDLIST=/home/runner/work/build-tools-gcc/build-tools-gcc/arm-linux-gnueabi/arm-linux-gnueabi/lib/ld-linux.so.3
 warn=
 bind_now=
 verbose=
