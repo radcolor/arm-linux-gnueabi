@@ -2217,8 +2217,8 @@
 #define HAVE_neon_vfmat_lanev8bf (TARGET_BF16_SIMD)
 #define HAVE_crypto_aesmc (TARGET_CRYPTO)
 #define HAVE_crypto_aesimc (TARGET_CRYPTO)
-#define HAVE_crypto_aesd (TARGET_CRYPTO)
-#define HAVE_crypto_aese (TARGET_CRYPTO)
+#define HAVE_aes_op_protect (TARGET_CRYPTO && fix_aes_erratum_1742098)
+#define HAVE_aes_op_protect_neon_vld1v16qi (TARGET_NEON)
 #define HAVE_crypto_sha1su1 (TARGET_CRYPTO)
 #define HAVE_crypto_sha256su0 (TARGET_CRYPTO)
 #define HAVE_crypto_sha1su0 (TARGET_CRYPTO)
@@ -5714,6 +5714,8 @@
 #define HAVE_neon_vbfcvtbf (TARGET_BF16_FP)
 #define HAVE_neon_vfmab_laneqv8bf (TARGET_BF16_SIMD)
 #define HAVE_neon_vfmat_laneqv8bf (TARGET_BF16_SIMD)
+#define HAVE_crypto_aesd (TARGET_CRYPTO)
+#define HAVE_crypto_aese (TARGET_CRYPTO)
 #define HAVE_crypto_sha1h (TARGET_CRYPTO)
 #define HAVE_crypto_sha1c (TARGET_CRYPTO)
 #define HAVE_crypto_sha1m (TARGET_CRYPTO)
@@ -8072,8 +8074,8 @@ extern rtx        gen_neon_vfmab_lanev8bf                            (rtx, rtx, 
 extern rtx        gen_neon_vfmat_lanev8bf                            (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_crypto_aesmc                                   (rtx, rtx);
 extern rtx        gen_crypto_aesimc                                  (rtx, rtx);
-extern rtx        gen_crypto_aesd                                    (rtx, rtx, rtx);
-extern rtx        gen_crypto_aese                                    (rtx, rtx, rtx);
+extern rtx        gen_aes_op_protect                                 (rtx, rtx);
+extern rtx        gen_aes_op_protect_neon_vld1v16qi                  (rtx, rtx);
 extern rtx        gen_crypto_sha1su1                                 (rtx, rtx, rtx);
 extern rtx        gen_crypto_sha256su0                               (rtx, rtx, rtx);
 extern rtx        gen_crypto_sha1su0                                 (rtx, rtx, rtx, rtx);
@@ -11260,6 +11262,8 @@ extern rtx        gen_vec_pack_trunc_di                              (rtx, rtx, 
 extern rtx        gen_neon_vbfcvtbf                                  (rtx, rtx);
 extern rtx        gen_neon_vfmab_laneqv8bf                           (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_vfmat_laneqv8bf                           (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_crypto_aesd                                    (rtx, rtx, rtx);
+extern rtx        gen_crypto_aese                                    (rtx, rtx, rtx);
 extern rtx        gen_crypto_sha1h                                   (rtx, rtx);
 extern rtx        gen_crypto_sha1c                                   (rtx, rtx, rtx, rtx);
 extern rtx        gen_crypto_sha1m                                   (rtx, rtx, rtx, rtx);
