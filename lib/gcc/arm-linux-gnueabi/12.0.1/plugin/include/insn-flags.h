@@ -179,6 +179,8 @@
 #define HAVE_probe_stack (TARGET_32BIT)
 #define HAVE_probe_stack_range (TARGET_32BIT)
 #define HAVE_arm_stack_protect_test_insn (TARGET_32BIT)
+#define HAVE_stack_protect_set_tls 1
+#define HAVE_stack_protect_test_tls 1
 #define HAVE_nop 1
 #define HAVE_trap 1
 #define HAVE_movcond_addsi (TARGET_32BIT)
@@ -199,6 +201,7 @@
 #define HAVE_force_register_use 1
 #define HAVE_arm_eh_return (TARGET_ARM)
 #define HAVE_load_tp_hard (TARGET_HARD_TP)
+#define HAVE_reload_tp_hard (TARGET_HARD_TP)
 #define HAVE_load_tp_soft_fdpic (TARGET_SOFT_TP && TARGET_FDPIC)
 #define HAVE_load_tp_soft (TARGET_SOFT_TP && !TARGET_FDPIC)
 #define HAVE_tlscall (TARGET_GNU2_TLS)
@@ -4497,8 +4500,10 @@
 #define HAVE_return_addr_mask (TARGET_ARM)
 #define HAVE_untyped_call (TARGET_EITHER && !TARGET_FDPIC)
 #define HAVE_untyped_return (TARGET_EITHER && !TARGET_FDPIC)
-#define HAVE_stack_protect_combined_set 1
-#define HAVE_stack_protect_combined_test 1
+#define HAVE_stack_protect_combined_set (arm_stack_protector_guard == SSP_GLOBAL)
+#define HAVE_stack_protect_combined_test (arm_stack_protector_guard == SSP_GLOBAL)
+#define HAVE_stack_protect_set (arm_stack_protector_guard == SSP_TLSREG)
+#define HAVE_stack_protect_test (arm_stack_protector_guard == SSP_TLSREG)
 #define HAVE_casesi ((TARGET_32BIT || optimize_size || flag_pic) && !target_pure_code)
 #define HAVE_arm_casesi_internal (TARGET_ARM)
 #define HAVE_indirect_jump 1
@@ -6105,6 +6110,8 @@ extern rtx        gen_blockage                                       (void);
 extern rtx        gen_probe_stack                                    (rtx);
 extern rtx        gen_probe_stack_range                              (rtx, rtx, rtx);
 extern rtx        gen_arm_stack_protect_test_insn                    (rtx, rtx, rtx);
+extern rtx        gen_stack_protect_set_tls                          (rtx, rtx);
+extern rtx        gen_stack_protect_test_tls                         (rtx, rtx);
 extern rtx        gen_nop                                            (void);
 extern rtx        gen_trap                                           (void);
 extern rtx        gen_movcond_addsi                                  (rtx, rtx, rtx, rtx, rtx, rtx);
@@ -6125,6 +6132,7 @@ extern rtx        gen_prefetch                                       (rtx, rtx, 
 extern rtx        gen_force_register_use                             (rtx);
 extern rtx        gen_arm_eh_return                                  (rtx);
 extern rtx        gen_load_tp_hard                                   (rtx);
+extern rtx        gen_reload_tp_hard                                 (rtx);
 extern rtx        gen_load_tp_soft_fdpic                             (void);
 extern rtx        gen_load_tp_soft                                   (void);
 extern rtx        gen_tlscall                                        (rtx, rtx);
@@ -10302,6 +10310,8 @@ extern rtx        gen_untyped_call                                   (rtx, rtx, 
 extern rtx        gen_untyped_return                                 (rtx, rtx);
 extern rtx        gen_stack_protect_combined_set                     (rtx, rtx);
 extern rtx        gen_stack_protect_combined_test                    (rtx, rtx, rtx);
+extern rtx        gen_stack_protect_set                              (rtx, rtx);
+extern rtx        gen_stack_protect_test                             (rtx, rtx, rtx);
 extern rtx        gen_casesi                                         (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_arm_casesi_internal                            (rtx, rtx, rtx, rtx);
 extern rtx        gen_indirect_jump                                  (rtx);
