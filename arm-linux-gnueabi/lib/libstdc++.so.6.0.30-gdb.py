@@ -19,7 +19,7 @@ import gdb
 import os
 import os.path
 
-pythondir = '/home/runner/work/build-tools-gcc/build-tools-gcc/arm-linux-gnueabi/share/gcc-12.0.1/python'
+pythondir = '/home/runner/work/build-tools-gcc/build-tools-gcc/arm-linux-gnueabi/share/gcc-13.0.0/python'
 libdir = '/home/runner/work/build-tools-gcc/build-tools-gcc/arm-linux-gnueabi/arm-linux-gnueabi/lib'
 
 # This file might be loaded when there is no current objfile.  This
