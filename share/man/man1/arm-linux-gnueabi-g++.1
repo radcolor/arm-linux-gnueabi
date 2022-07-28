@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-07-21" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-07-28" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -9173,15 +9173,21 @@ This warning requires \fB\-fanalyzer\fR, which enables it; use
 \&\fB\-Wno\-analyzer\-fd\-access\-mode\-mismatch\fR
 to disable it.
 .Sp
-This diagnostic warns for paths through code in which a 
-\&\f(CW\*(C`read\*(C'\fR on a write-only file descriptor is attempted, or vice versa
+This diagnostic warns for paths through code in which a
+\&\f(CW\*(C`read\*(C'\fR on a write-only file descriptor is attempted, or vice versa.
+.Sp
+This diagnostic also warns for code paths in a which a function with attribute
+\&\f(CW\*(C`fd_arg_read (N)\*(C'\fR is called with a file descriptor opened with
+\&\f(CW\*(C`O_WRONLY\*(C'\fR at referenced argument \f(CW\*(C`N\*(C'\fR or a function with attribute
+\&\f(CW\*(C`fd_arg_write (N)\*(C'\fR is called with a file descriptor opened with
+\&\f(CW\*(C`O_RDONLY\*(C'\fR at referenced argument \fIN\fR.
 .IP "\fB\-Wno\-analyzer\-fd\-double\-close\fR" 4
 .IX Item "-Wno-analyzer-fd-double-close"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
 \&\fB\-Wno\-analyzer\-fd\-double\-close\fR
 to disable it.
 .Sp
-This diagnostic warns for paths through code in which a 
+This diagnostic warns for paths through code in which a
 file descriptor can be closed more than once.
 .IP "\fB\-Wno\-analyzer\-fd\-leak\fR" 4
 .IX Item "-Wno-analyzer-fd-leak"
@@ -9189,7 +9195,7 @@ This warning requires \fB\-fanalyzer\fR, which enables it; use
 \&\fB\-Wno\-analyzer\-fd\-leak\fR
 to disable it.
 .Sp
-This diagnostic warns for paths through code in which an 
+This diagnostic warns for paths through code in which an
 open file descriptor is leaked.
 .IP "\fB\-Wno\-analyzer\-fd\-use\-after\-close\fR" 4
 .IX Item "-Wno-analyzer-fd-use-after-close"
@@ -9197,16 +9203,26 @@ This warning requires \fB\-fanalyzer\fR, which enables it; use
 \&\fB\-Wno\-analyzer\-fd\-use\-after\-close\fR
 to disable it.
 .Sp
-This diagnostic warns for paths through code in which a 
+This diagnostic warns for paths through code in which a
 read or write is called on a closed file descriptor.
+.Sp
+This diagnostic also warns for paths through code in which
+a function with attribute \f(CW\*(C`fd_arg (N)\*(C'\fR or \f(CW\*(C`fd_arg_read (N)\*(C'\fR
+or \f(CW\*(C`fd_arg_write (N)\*(C'\fR is called with a closed file descriptor at
+referenced argument \f(CW\*(C`N\*(C'\fR.
 .IP "\fB\-Wno\-analyzer\-fd\-use\-without\-check\fR" 4
 .IX Item "-Wno-analyzer-fd-use-without-check"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
 \&\fB\-Wno\-analyzer\-fd\-use\-without\-check\fR
 to disable it.
 .Sp
-This diagnostic warns for paths through code in which a 
+This diagnostic warns for paths through code in which a
 file descriptor is used without being checked for validity.
+.Sp
+This diagnostic also warns for paths through code in which
+a function with attribute \f(CW\*(C`fd_arg (N)\*(C'\fR or \f(CW\*(C`fd_arg_read (N)\*(C'\fR
+or \f(CW\*(C`fd_arg_write (N)\*(C'\fR is called with a file descriptor, at referenced
+argument \f(CW\*(C`N\*(C'\fR, without being checked for validity.
 .IP "\fB\-Wno\-analyzer\-file\-leak\fR" 4
 .IX Item "-Wno-analyzer-file-leak"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -24044,6 +24060,20 @@ global symbol: The data got table must be within +/\-8EiB addressing space.
 .Sp
 The default code model is \f(CW\*(C`normal\*(C'\fR.
 .RE
+.IP "\fB\-mexplicit\-relocs\fR" 4
+.IX Item "-mexplicit-relocs"
+.PD 0
+.IP "\fB\-mno\-explicit\-relocs\fR" 4
+.IX Item "-mno-explicit-relocs"
+.PD
+Use or do not use assembler relocation operators when dealing with symbolic
+addresses.  The alternative is to use assembler macros instead, which may
+limit optimization.  The default value for the option is determined during
+\&\s-1GCC\s0 build-time by detecting corresponding assembler support:
+\&\f(CW\*(C`\-mexplicit\-relocs\*(C'\fR if said support is present,
+\&\f(CW\*(C`\-mno\-explicit\-relocs\*(C'\fR otherwise.  This option is mostly useful for
+debugging, or interoperation with assemblers different from the build-time
+one.
 .PP
 \fIM32C Options\fR
 .IX Subsection "M32C Options"
